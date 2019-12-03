@@ -14,12 +14,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'mhinz/vim-signify'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-airline/vim-airline'
-"Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'morhetz/gruvbox'
 Plugin 'junegunn/fzf'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'scrooloose/nerdtree'
-Plugin 'w0rp/ale'
 Plugin 'martinda/Jenkinsfile-vim-syntax.git'
 Plugin 'SirVer/ultisnips'
 Plugin 'benmills/vimux'
@@ -34,25 +32,26 @@ Bundle 'ycm-core/YouCompleteMe'
 " End of vundle
 call vundle#end()
 
-
 filetype plugin indent on
 
 " Remap splits
-nnoremap 'v <C-w>v
-nnoremap 'h <C-w>s
+nnoremap <leader>v <C-w>v
+nnoremap <leader>h <C-w>s
 
 " Jump between splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <silent> <C-J> <C-W><C-J>
+nnoremap <silent> <C-K> <C-W><C-K>
+nnoremap <silent> <C-L> <C-W><C-L>
+nnoremap <silent> <C-H> <C-W><C-H>
 " Remap escape
 inoremap kj <Esc>
 cnoremap kj <Esc>
+
 " Enable cold folding
 set foldmethod=indent
 set foldlevel=99
 
+set term=screen-256color
 
 " Enbale default configs
 set tabstop=4
@@ -91,8 +90,6 @@ map g/ <Plug>(incsearch-stay)
 :vnoremap < <gv
 :vnoremap > >gv
 
-"autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -100,7 +97,14 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+" YCM configurations
+let g:ycm_autoclose_preview_window_after_completion=1
+map <F3>  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <F2>  :YcmCompleter GetDoc<CR>
+map <F1>  :YcmCompleter FixIt<CR>
+map <F4>  :YcmCompleter GoToReferences<CR>
 
+" Ultisnippts configuration
 let g:UltiSnipsExpandTrigger="`"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
