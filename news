@@ -1,0 +1,19 @@
+#!/bin/bash
+Goteborg=$(curl https://sverigesradio.se/goteborg/ | grep 'class="heading"' | cut -d ">" -f3 | cut -d "<" -f1)
+Sverige=$(curl https://sverigesradio.se | grep 'class="heading"' | cut -d ">" -f3 | cut -d "<" -f1)
+Utrikes=$(curl https://sverigesradio.se/utrikes/ | grep 'class="heading"' | cut -d ">" -f3 | cut -d "<" -f1)
+
+echo "Göteborg"
+echo "----------------------------------"
+echo ""
+echo $Goteborg
+echo ""
+echo "Sverige"
+echo "----------------------------------"
+echo ""
+echo $Sverige
+echo ""
+echo "Världen"
+echo "----------------------------------"
+echo ""
+echo $Utrikes
