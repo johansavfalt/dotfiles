@@ -1,19 +1,24 @@
 #!/bin/bash
-Goteborg=$(curl https://sverigesradio.se/goteborg/ | grep 'class="heading"' | cut -d ">" -f3 | cut -d "<" -f1)
-Sverige=$(curl https://sverigesradio.se | grep 'class="heading"' | cut -d ">" -f3 | cut -d "<" -f1)
-Utrikes=$(curl https://sverigesradio.se/utrikes/ | grep 'class="heading"' | cut -d ">" -f3 | cut -d "<" -f1)
-
+Goteborg=$(curl -s https://sverigesradio.se/goteborg/ | grep 'class="heading"' | cut -d ">" -f3 )
+Sverige=$(curl -s https://sverigesradio.se | grep 'class="heading"' | cut -d ">" -f3 )
+Utrikes=$(curl -s https://sverigesradio.se/utrikes/ | grep 'class="heading"' | cut -d ">" -f3)
+echo ""
 echo "Göteborg"
 echo "----------------------------------"
 echo ""
-echo $Goteborg
+echo  $Goteborg | python3 -c 'import html, sys; input = sys.stdin.readline()
+for l in input.split("</a"):print(html.unescape(l))'
 echo ""
 echo "Sverige"
 echo "----------------------------------"
 echo ""
-echo $Sverige
+echo $Sverige  | python3 -c 'import html, sys; input = sys.stdin.readline()
+for l in input.split("</a"):print(html.unescape(l))'
+
 echo ""
 echo "Världen"
 echo "----------------------------------"
 echo ""
-echo $Utrikes
+echo $Utrikes  |  python3 -c 'import html, sys; input = sys.stdin.readline()
+for l in input.split("</a"):print(html.unescape(l))'
+
