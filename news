@@ -3,22 +3,26 @@ Goteborg=$(curl -s https://sverigesradio.se/goteborg/ | grep 'class="heading"' |
 Sverige=$(curl -s https://sverigesradio.se | grep 'class="heading"' | cut -d ">" -f3 )
 Utrikes=$(curl -s https://sverigesradio.se/utrikes/ | grep 'class="heading"' | cut -d ">" -f3)
 echo ""
-echo "Göteborg"
-echo "----------------------------------"
+echo " Göteborg"
+echo " ----------------------------------"
 echo ""
 echo  $Goteborg | python3 -c 'import html, sys; input = sys.stdin.readline()
-for l in input.split("</a"):print(html.unescape(l))'
+for l in input.split("</a")[:5]:print(html.unescape(l))'
 echo ""
-echo "Sverige"
-echo "----------------------------------"
+echo " Sverige"
+echo " ----------------------------------"
 echo ""
 echo $Sverige  | python3 -c 'import html, sys; input = sys.stdin.readline()
-for l in input.split("</a"):print(html.unescape(l))'
+for l in input.split("</a")[:5]:print(html.unescape(l))'
 
 echo ""
-echo "Världen"
-echo "----------------------------------"
+echo " Världen"
+echo " ----------------------------------"
 echo ""
 echo $Utrikes  |  python3 -c 'import html, sys; input = sys.stdin.readline()
-for l in input.split("</a"):print(html.unescape(l))'
-
+for l in input.split("</a")[:5]:print(html.unescape(l))'
+echo ""
+echo " Väder"
+echo " ----------------------------------"
+curl -s 'wttr.in/{Gothenburg,Simrishamn,Trysil}?format=3'
+echo ""
