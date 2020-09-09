@@ -1,10 +1,35 @@
 
-alias j12="export JAVA_HOME=`/usr/libexec/java_home -v 12`; java -version"
+#   ---------------------------
+#   4. Aliases
+#   ---------------------------
+
+
+
+## JAVA 
 alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
-alias j10="export JAVA_HOME=`/usr/libexec/java_home -v 10`; java -version"
-alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
 alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
-alias j7="export JAVA_HOME=`/usr/libexec/java_home -v 1.7`; java -version
+### Maven
+mvnRunClass(){
+mvn exec:java -Dexec.mainClass="$1"
+
+}
+
+mvnTestClass(){
+mvn -Dtest=$1 test
+
+}
+mvnDebugTest(){
+    mvn -Dtest=$1 -Dmaven.surefire.debug=true test
+
+}
+
+### JDB
+
+jdbMaven(){
+    jdb -sourcepath src/main/java:src/test/java -attach 5005
+}
+
+## General
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
